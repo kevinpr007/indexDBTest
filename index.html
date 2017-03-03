@@ -93,7 +93,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="col-md-2 col-md-offset-10">
+                    <div class="col-md-4 col-md-offset-10">
                         <a id="ReRender" class="btn btn-primary">Re-Render</a>
                         <a id="syncAll" class="btn btn-primary">Sync All</a>
                     </div>
@@ -133,33 +133,33 @@
 <script type="text/javascript">
     (function () {
 
-        // var AuditArray = [
-        //     [
-        //         "0339b2bc-6ce9-451d-22dd-58a71df5c2ea",
-        //         "CLASSICARE",
-        //         "Last Names",
-        //         "Member Name",
-        //         "1234",
-        //         "EMERGENCY",
-        //         "Admiting Last Names",
-        //         "Admiting Physician Name",
-        //         "0123456789 - Hospital Example 1"
-        //     ]
-        // ]
+        var AuditArray = [
+            [
+                "0339b2bc-6ce9-451d-22dd-58a71df5c2ea",
+                "CLASSICARE",
+                "Last Names",
+                "Member Name",
+                "1234",
+                "EMERGENCY",
+                "Admiting Last Names",
+                "Admiting Physician Name",
+                "0123456789 - Hospital Example 1"
+            ]
+        ]
 
-        // var AuditArrayEDITED = [
-        //     [
-        //         "0339b2bc-6ce9-451d-22dd-58a71df5c2ea",
-        //         "EDITED",
-        //         "EDITED",
-        //         "EDITED",
-        //         "EDITED",
-        //         "EDITED",
-        //         "EDITED",
-        //         "EDITED",
-        //         "EDITED"
-        //     ]
-        // ]
+        var AuditArrayEDITED = [
+            [
+                "0339b2bc-6ce9-451d-22dd-58a71df5c2ea",
+                "EDITED",
+                "EDITED",
+                "EDITED",
+                "EDITED",
+                "EDITED",
+                "EDITED",
+                "EDITED",
+                "EDITED"
+            ]
+        ]
 
         function renderTable(data) {
             $('#MainTable').DataTable({
@@ -179,55 +179,52 @@
         }
 
         $('#ReRender').click(function () {
-            // $("#syncAllSpinner").show();
-            // $("#MainTable").hide();
+            $("#syncAllSpinner").show();
+            $("#MainTable").hide();
 
-            // setTimeout(function () {
-            //     // $('#MainTable').DataTable().destroy();
-            //     // $('#MainTable').empty();
-            // alert('ready');
-            let test = indexDB.readAll();
-            let test2 = utils.convertDataToDataTable(test)
-            console.log(test2);
-            // renderTable(test2);
+            setTimeout(function () {
+                $('#MainTable').DataTable().destroy();
+                $('#MainTable').empty();
 
-            // renderTable(AuditArrayEDITED);
+                // let test = indexDB.readAll();
+                // let test2 = utils.convertDataToDataTable(test)
 
-            // $("#syncAllSpinner").hide();
-            // $("#MainTable").show();
-            // }, 3000);
+                renderTable(AuditArrayEDITED);
+
+                $("#syncAllSpinner").hide();
+                $("#MainTable").show();
+            }, 3000);
 
         });
 
-        // let test = indexDB.readAll()
-        // let test2 = utils.convertDataToDataTable(test)
-        // renderTable(test2)
+        $('#syncAll').click(function () {
+            $.ajax({
+                type: 'GET',
+                url: 'https://jsonplaceholder.typicode.com/posts/1',
+                data: JSON.stringify({}),
+                contentType: 'application/json;',
+                dataType: 'json',
+                beforeSend: function () {
+                    $("#syncAllSpinner").show();
+                    $("#MainTable").hide();
+                },
+                complete: function () {
+                    setTimeout(function () {
+                        $("#syncAllSpinner").hide();
+                        $("#MainTable").show();
+                    }, 3000);
+                },
+                success: function (data) {
+                    console.log('success: ' + data.body)
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('error')
+                }
+            })
+        });
 
-        // $('#syncAll').click(function () {
-        //     $.ajax({
-        //         type: 'GET',
-        //         url: 'https://jsonplaceholder.typicode.com/posts/1',
-        //         data: JSON.stringify({}),
-        //         contentType: 'application/json;',
-        //         dataType: 'json',
-        //         beforeSend: function () {
-        //             $("#syncAllSpinner").show();
-        //             $("#MainTable").hide();
-        //         },
-        //         complete: function () {
-        //             setTimeout(function () {
-        //                 $("#syncAllSpinner").hide();
-        //                 $("#MainTable").show();
-        //             }, 3000);
-        //         },
-        //         success: function (data) {
-        //             console.log('success: ' + data.body)
-        //         },
-        //         error: function (xhr, textStatus, errorThrown) {
-        //             console.log('error')
-        //         }
-        //     })
-        // });
+        renderTable(AuditArray);
+
     }())
 
 </script>
