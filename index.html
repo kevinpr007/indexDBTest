@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js" type="text/javascript"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="./css/mycss" rel="stylesheet" type="text/css">
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css" rel="stylesheet">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+    <!-- Bootstrap Date-Picker Plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" rel="stylesheet">
+
+    <!--Data Tables Plugin-->
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet">
+
+    <script src="./js/generalInitializer.js" type="text/javascript"></script>
+    <script src="./js/generics.js" type="text/javascript"></script>
+    <script src="./js/myIndexDB.js" type="text/javascript"></script>
+    <title>Home</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                <a class="navbar-brand" href="./index.html">HURIS</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="./index.html">Home</a></li>
+                    <li><a href="./hurisNewRecord.html">New Admission</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">Nav header</li>
+                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">@Username</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Home</h1>
+                    <hr />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Local Records</h2>
+                    <hr />
+
+                    <table id="MainTable" class="display" width="100%"></table>
+
+                    <button id="syncAllSpinner" style="display: none" type="button" class="btn btn-default" aria-label="Left Align">
+                              <span class="glyphicon glyphicon-refresh glyphicon-spin"></span> Loading...
+                        </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-2 col-md-offset-10">
+                        <a id="ReRender" class="btn btn-primary">Re-Render</a>
+                        <a id="syncAll" class="btn btn-primary">Sync All</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="section section-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h1>Footer header</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisici elit,<br> sed eiusmod tempor incidunt ut labore et
+                        dolore magna aliqua.<br> Ut enim ad minim veniam, quis nostrud
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="text-info text-right"><br>
+                        <br>
+                    </p>
+                    <div class="row">
+                        <div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
+                            <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a> <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>                            <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a> <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 hidden-xs text-right">
+                            <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a> <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>                            <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a> <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+<script type="text/javascript">
+    (function () {
+
+        // var AuditArray = [
+        //     [
+        //         "0339b2bc-6ce9-451d-22dd-58a71df5c2ea",
+        //         "CLASSICARE",
+        //         "Last Names",
+        //         "Member Name",
+        //         "1234",
+        //         "EMERGENCY",
+        //         "Admiting Last Names",
+        //         "Admiting Physician Name",
+        //         "0123456789 - Hospital Example 1"
+        //     ]
+        // ]
+
+        // var AuditArrayEDITED = [
+        //     [
+        //         "0339b2bc-6ce9-451d-22dd-58a71df5c2ea",
+        //         "EDITED",
+        //         "EDITED",
+        //         "EDITED",
+        //         "EDITED",
+        //         "EDITED",
+        //         "EDITED",
+        //         "EDITED",
+        //         "EDITED"
+        //     ]
+        // ]
+
+        function renderTable(data) {
+            $('#MainTable').DataTable({
+                data: data,
+                columns: [
+                    { "title": "ID" },
+                    { "title": "Member Coverage Type" },
+                    { "title": "Member Last Names" },
+                    { "title": "Member Name" },
+                    { "title": "Member Number" },
+                    { "title": "Admission Type" },
+                    { "title": "Admiting Last Names" },
+                    { "title": "Admiting Name" },
+                    { "title": "Provider" }
+                ]
+            });
+        }
+
+        $('#ReRender').click(function () {
+            // $("#syncAllSpinner").show();
+            // $("#MainTable").hide();
+
+            // setTimeout(function () {
+            //     // $('#MainTable').DataTable().destroy();
+            //     // $('#MainTable').empty();
+            // alert('ready');
+            let test = indexDB.readAll();
+            let test2 = utils.convertDataToDataTable(test)
+            console.log(test2);
+            // renderTable(test2);
+
+            // renderTable(AuditArrayEDITED);
+
+            // $("#syncAllSpinner").hide();
+            // $("#MainTable").show();
+            // }, 3000);
+
+        });
+
+        // let test = indexDB.readAll()
+        // let test2 = utils.convertDataToDataTable(test)
+        // renderTable(test2)
+
+        // $('#syncAll').click(function () {
+        //     $.ajax({
+        //         type: 'GET',
+        //         url: 'https://jsonplaceholder.typicode.com/posts/1',
+        //         data: JSON.stringify({}),
+        //         contentType: 'application/json;',
+        //         dataType: 'json',
+        //         beforeSend: function () {
+        //             $("#syncAllSpinner").show();
+        //             $("#MainTable").hide();
+        //         },
+        //         complete: function () {
+        //             setTimeout(function () {
+        //                 $("#syncAllSpinner").hide();
+        //                 $("#MainTable").show();
+        //             }, 3000);
+        //         },
+        //         success: function (data) {
+        //             console.log('success: ' + data.body)
+        //         },
+        //         error: function (xhr, textStatus, errorThrown) {
+        //             console.log('error')
+        //         }
+        //     })
+        // });
+    }())
+
+</script>
+
+</html>
