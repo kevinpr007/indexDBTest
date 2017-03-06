@@ -221,7 +221,13 @@
             })
         });
 
-        renderTable(AuditArray);
+        setTimeout(function () {
+            var test = indexDB.readAll();
+            setTimeout(function () {
+                var test2 = utils.convertDataToDataTable(test)
+                renderTable(test2);
+            }, 50)
+        }, 50)
 
     }())
 
