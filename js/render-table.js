@@ -1,16 +1,32 @@
 ;(function () {
   const DB_Table = 'Audit'
-  var db
 
-  indexDb.connect(indexDb.Event, DB_Table)
+  let tempData = [
+    {
+      id: '0339b2bc-6ce9-451d-22dd-58a71df5c2ea',
+      memberCoverageType: 'CLASSICARE',
+      lastNames: 'Del Pueblo',
+      memberName: 'Juan',
+      memberNumber: '1234',
+      admissionType: 'EMERGENCY',
+      admitingLastNames: 'Admiting Last Names',
+      admitingPhysicianName: 'Admiting Physician Name',
+      provider: '0123456789 - Hospital Example 1'
+    }
+  ]
 
-  indexDb.Event.on('connected', function (database) {
-    //indexDb.insert(database[0], DB_Table)
+  let event = new $.eventEmitter()
+
+  indexDb.connect(event, DB_Table)
+
+  event.on('connected', function (database) {
+    indexDb.insert(database[0], DB_Table, tempData)
     indexDb.readAll(database[0], DB_Table, renderTable)
   })
 
   function renderTable (data) {
     $('#MainTable').DataTable({
+      retrieve: true,
       data: data,
       columns: [
         { 'data': 'id', 'title': 'ID' },
