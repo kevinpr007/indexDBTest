@@ -51,7 +51,7 @@
       .add(data)
 
     request.onsuccess = function (e) {
-      alert('Information successfully added to your database.')
+      alert('Information successfully added to your local database.')
     }
 
     request.onerror = function (e) {

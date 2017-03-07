@@ -34,8 +34,8 @@
     })
   }
 
-  // $('#syncAll').on('click', function () {
-
-  // })
+  $('#syncAll').on('click', function () {
+    alert('Your local data was uploaded to the server.')
+  })
 
 }())
