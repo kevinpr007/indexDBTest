@@ -44,4 +44,37 @@
       database.close()
     }
   }
+
+  indexDb.insert = function (database, dtTable, data) {
+    let request = database.transaction(dtTable, 'readwrite')
+      .objectStore(dtTable)
+      .add(data)
+
+    request.onsuccess = function (e) {
+      alert('Information successfully added to your database.')
+    }
+
+    request.onerror = function (e) {
+      alert('Unable to add data: ' + e.target.result)
+    }
+  }
+
+  indexDb.readAll = function (database, dtTable, cb) {
+    let transaction = database.transaction(dtTable, 'readwrite')
+    let objectStore = transaction.objectStore(dtTable)
+    let objectResult = []
+
+    objectStore.openCursor().onsuccess = function (e) {
+      let cursor = e.target.result
+
+      if (cursor) {
+        objectResult.push(cursor.value)
+        cursor.continue()
+      }
+    }
+
+    transaction.oncomplete = function () {
+      cb(objectResult)
+    }
+  }
 }())

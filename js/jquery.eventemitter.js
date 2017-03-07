@@ -3,42 +3,40 @@
  * callbacks function; specifically that we can bind events after the 
  * event has already been triggered.
  */
-(function($) {
+;(function ($) {
+  $.eventEmitter = function () {
+    this._callbacks = {}
 
-    $.eventEmitter = function() {
-        this._callbacks = {};
+    this.on = function (names, callback) {
+      var names = names.split(' '),
+        l = names.length,
+        i
 
-        this.on = function(names, callback) {
-            var names = names.split(' '),
-                l = names.length,
-                i;
-                
-            for (i = 0; i < l; i++) {
-                if (!this._callbacks[names[i]]) {
-                    this._callbacks[names[i]] = $.Callbacks('once unique memory');
-                }
-                this._callbacks[names[i]].add(callback);
-            }
-        };
+      for (i = 0; i < l; i++) {
+        if (!this._callbacks[names[i]]) {
+          this._callbacks[names[i]] = $.Callbacks('once unique memory')
+        }
+        this._callbacks[names[i]].add(callback)
+      }
+    }
 
-        this.off = function(names, callback) {
-            var names = names.split(' '),
-                l = names.length,
-                i;
-                
-            for (i = 0; i < l; i++) {
-                if (this._callbacks[names[i]]) {
-                    this._callbacks[names[i]].remove(callback);
-                }
-            }
-        };
+    this.off = function (names, callback) {
+      var names = names.split(' '),
+        l = names.length,
+        i
 
-        this.trigger = function(name) {
-            if (!this._callbacks[name]) {
-                this._callbacks[name] = $.Callbacks('once unique memory');
-            }
-            this._callbacks[name].fire(Array.prototype.slice.call(arguments, 1));
-        };
-    };
+      for (i = 0; i < l; i++) {
+        if (this._callbacks[names[i]]) {
+          this._callbacks[names[i]].remove(callback)
+        }
+      }
+    }
 
-})(jQuery);
+    this.trigger = function (name) {
+      if (!this._callbacks[name]) {
+        this._callbacks[name] = $.Callbacks('once unique memory')
+      }
+      this._callbacks[name].fire(Array.prototype.slice.call(arguments, 1))
+    }
+  }
+})(jQuery)

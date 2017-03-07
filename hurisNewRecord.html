@@ -17,9 +17,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" rel="stylesheet">
 
-    <script src="./js/generics.js" type="text/javascript"></script>
-    <script src="./js/generalInitializer.js" type="text/javascript"></script>
-    <script src="./js/myIndexDB.js" type="text/javascript"></script>
     <title>Admission #: New Record</title>
 </head>
 
@@ -528,40 +525,12 @@
             </div>
         </div>
     </footer>
-
-    <script type="text/javascript">
-        $('#test').click(function () {
-
-            function successCallback(data) {
-                console.log('success: ' + data.body)
-            }
-
-            function errorCallback(xhr, textStatus, errorThrown) {
-                console.log('error')
-            }
-
-            //utils.myAjaxCallExample('GET', 'https://jsonplaceholder.typicode.com/posts/1', {}, successCallback, errorCallback);
-
-            let newRecord = {
-                id: utils.getUUID(),
-                patientInfo: {
-                    memberNumber: $('#memberNumber').val(),
-                    memberName: $('#memberName').val(),
-                    memberLastNames: $('#memberLastNames').val(),
-                    memberCoverageType: $('#memberCoverageType').val(),
-                },
-                providerInfo: {
-                    providerId: $('#provider').val(),
-                    admitingName: $('#admitingPhysicianName').val(),
-                    admitingLastNames: $('#admitingPhysicianLastName').val(),
-                    admissionType: $('#admissionType').val()
-                }
-            }
-
-            indexDB.add(newRecord)
-
-        });
-    </script>
+    <!--Event Emitter-->
+    <script src="./js/jquery.eventEmitter.js" type="text/javascript"></script>
+    <script src="./js/generalInitializer.js" type="text/javascript"></script>
+    <script src="./js/generics.js" type="text/javascript"></script>
+    <script src="./js/indexDb.js" type="text/javascript"></script>
+    <script src="./js/hurisNewRecord.js" type="text/javascript"></script>
 </body>
 
 </html>
