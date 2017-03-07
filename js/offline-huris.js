@@ -10,7 +10,8 @@
   }
 
   indexDb.readAll = function (database, dtTable, cb) {
-    let objectStore = database.transaction(dtTable, 'readwrite').objectStore(dtTable)
+    let transaction = database.transaction(dtTable, 'readwrite')
+    let objectStore = transaction.objectStore(dtTable)
     let objectResult = []
 
     objectStore.openCursor().onsuccess = function (e) {
@@ -20,7 +21,11 @@
         objectResult.push(cursor.value)
         cursor.continue()
       }
+    }
+
+    transaction.oncomplete = function() {
       cb(objectResult)
     }
+
   }
 }())

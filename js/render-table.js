@@ -1,5 +1,6 @@
 ;(function () {
   const DB_Table = 'Audit'
+  let db
 
   let tempData = [
     {
@@ -20,8 +21,9 @@
   indexDb.connect(event, DB_Table)
 
   event.on('connected', function (database) {
-    indexDb.insert(database[0], DB_Table, tempData)
-    indexDb.readAll(database[0], DB_Table, renderTable)
+    // indexDb.insert(database[0], DB_Table, tempData)
+    // indexDb.readAll(database[0], DB_Table, renderTable)
+    db = database[0]
   })
 
   function renderTable (data) {
@@ -41,4 +43,8 @@
       ]
     })
   }
+
+  $('#syncAll').on('click', function() {
+    indexDb.readAll(db, DB_Table, renderTable)
+  })
 }())
