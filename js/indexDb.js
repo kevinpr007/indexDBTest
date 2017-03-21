@@ -61,8 +61,22 @@
     }
   }
 
+  indexDb.delete = function (db, dtTable, id) {
+    let request = db.transaction(dtTable, 'readwrite')
+      .objectStore(dtTable)
+      .delete(id)
+
+    request.onsuccess = function (e) {
+      alert('The record was deleted from your local database.')
+    }
+
+    request.onerror = function (e) {
+      console.error('Unable to add data: ' + e.target.result)
+      alert('Unable to add data: ' + e.target.result)
+    }
+  }
+
   indexDb.update = function (db, dtTable, newData) {
-    debugger
     var objectStore = db.transaction(dtTable, 'readwrite')
       .objectStore(dtTable)
 
@@ -74,7 +88,6 @@
     }
 
     request.onsuccess = function (e) {
-      debugger
       // Get the old value that we want to update
       var oldData = e.target.result
 
