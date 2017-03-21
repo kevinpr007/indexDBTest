@@ -26,6 +26,7 @@
     return guid
   }
 
+  // Convert data to be used in the DataTable's Plugin
   utils.convertDataToDataTable = function (data) {
     let newData = []
 
