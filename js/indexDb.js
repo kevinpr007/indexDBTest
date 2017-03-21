@@ -61,6 +61,42 @@
     }
   }
 
+  indexDb.update = function (db, dtTable, newData) {
+    debugger
+    var objectStore = db.transaction(dtTable, 'readwrite')
+      .objectStore(dtTable)
+
+    var request = objectStore.get(newData.id)
+
+    request.onerror = function (e) {
+      console.error('error: ' + e.target.result)
+      alert('error: ' + e.target.result)
+    }
+
+    request.onsuccess = function (e) {
+      debugger
+      // Get the old value that we want to update
+      var oldData = e.target.result
+
+      // update the value(s) in the object that you want to change
+
+      // TODO: ********* MODIFY THIS *********
+      oldData.EDITED = 'TRUE-AGAIN'
+
+      // Put this updated object back into the database.
+      var requestUpdate = objectStore.put(oldData)
+
+      requestUpdate.onerror = function (e) {
+        console.error('error: ' + e.target.result)
+        alert('error: ' + e.target.result)
+      }
+
+      requestUpdate.onsuccess = function (e) {
+        alert('Information was successfully updated in your local database.')
+      }
+    }
+  }
+
   indexDb.read = function (db, dtTable, id, cb) {
     let transaction = db.transaction(dtTable)
     let objectStore = transaction.objectStore(dtTable)

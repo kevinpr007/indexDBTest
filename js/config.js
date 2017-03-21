@@ -1,4 +1,4 @@
 var config = {
-  localDBName: "HURIS_DB",
+  localDBName: 'HURIS_DB',
   versionDB: 1
 }
