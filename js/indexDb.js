@@ -2,9 +2,8 @@
   this.indexDb = this.indexDb || {}
   var indexDb = this.indexDb
 
-  var database
-  const DB_NAME = 'HURIS_DB'
-  var versionDB = 1
+  const DB_NAME = config.localDBName
+  var versionDB = config.versionDB
 
   indexDb.connect = function (event, dbTable) {
     window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB
