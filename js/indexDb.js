@@ -76,6 +76,7 @@
     }
   }
 
+  // TODO: ********* MODIFY THIS *********
   indexDb.update = function (db, dtTable, newData) {
     var objectStore = db.transaction(dtTable, 'readwrite')
       .objectStore(dtTable)
