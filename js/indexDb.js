@@ -16,10 +16,12 @@
       console.error(systemAlert)
     }
 
+    var database
     var request = window.indexedDB.open(DB_NAME, versionDB)
 
     request.onerror = function (e) {
       console.error('error: ' + e.target.result)
+      alert('error: ' + e.target.result)
     }
 
     request.onsuccess = function (e) {
@@ -44,8 +46,8 @@
     }
   }
 
-  indexDb.insert = function (database, dtTable, data) {
-    let request = database.transaction(dtTable, 'readwrite')
+  indexDb.insert = function (db, dtTable, data) {
+    let request = db.transaction(dtTable, 'readwrite')
       .objectStore(dtTable)
       .add(data)
 
@@ -54,12 +56,28 @@
     }
 
     request.onerror = function (e) {
+      console.error('Unable to add data: ' + e.target.result)
       alert('Unable to add data: ' + e.target.result)
     }
   }
 
-  indexDb.readAll = function (database, dtTable, cb) {
-    let transaction = database.transaction(dtTable, 'readwrite')
+  indexDb.read = function (db, dtTable, id, cb) {
+    let transaction = db.transaction(dtTable)
+    let objectStore = transaction.objectStore(dtTable)
+    let request = objectStore.get(id)
+
+    request.onerror = function (e) {
+      console.error('error: ' + e.target.result)
+      alert('error: ' + e.target.result)
+    }
+
+    request.onsuccess = function (e) {
+      cb(request.result)
+    }
+  }
+
+  indexDb.readAll = function (db, dtTable, cb) {
+    let transaction = db.transaction(dtTable, 'readwrite')
     let objectStore = transaction.objectStore(dtTable)
     let objectResult = []
 
@@ -74,6 +92,11 @@
 
     transaction.oncomplete = function () {
       cb(objectResult)
+    }
+
+    transaction.onerror = function (e) {
+      console.error('error: ' + e.target.result)
+      alert('error: ' + e.target.result)
     }
   }
 }())
