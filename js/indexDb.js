@@ -46,18 +46,20 @@
     }
   }
 
-  indexDb.insert = function (db, dtTable, data) {
+  indexDb.insert = function (db, dtTable, data, cb) {
     let request = db.transaction(dtTable, 'readwrite')
       .objectStore(dtTable)
       .add(data)
 
     request.onsuccess = function (e) {
       alert('Information successfully added to your local database.')
+      cb(null, true)
     }
 
     request.onerror = function (e) {
       console.error('Unable to add data: ' + e.target.result)
       alert('Unable to add data: ' + e.target.result)
+      cb(false)
     }
   }
 

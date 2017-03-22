@@ -1,9 +1,10 @@
 ;(function () {
-  const DB_Table = 'Audit'
+  const DB_Table = config.DB_Table
 
   let db
 
   let event = new $.eventEmitter()
+
   indexDb.connect(event, DB_Table)
 
   event.on('connected', function (database) {
@@ -16,7 +17,7 @@
     }
 
     function errorCallback (xhr, textStatus, errorThrown) {
-      console.log('error')
+      console.log('error' + errorThrown)
     }
 
     // utils.myAjaxCallExample('GET', 'https://jsonplaceholder.typicode.com/posts/1', {}, successCallback, errorCallback)
@@ -37,7 +38,10 @@
       }
     }
 
-    indexDb.insert(db, DB_Table, newRecord)
-    window.location.href = './offlineHuris.html'
+    indexDb.insert(db, DB_Table, newRecord, function (err, success) {
+      if (success === true) {
+        window.location.href = './offlineHuris.html'
+      }
+    })
   })
 }())
