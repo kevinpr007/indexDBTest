@@ -1,5 +1,5 @@
 ;(function () {
-  const DB_Table = 'Audit'
+  const DB_Table = config.DB_Table
 
   let db
 
@@ -35,7 +35,8 @@
   }
 
   $('#syncAll').on('click', function () {
+
+    // TODO: Add this feature
     alert('Your local data was uploaded to the server.')
   })
-
 }())
