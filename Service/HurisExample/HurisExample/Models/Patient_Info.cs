@@ -6,7 +6,7 @@ using System.Web;
 
 namespace HurisExample.Models
 {
-    [DataContract(IsReference = true)]
+    [DataContract]
     public class Patient_Info
     {
         //Patient Info
@@ -27,7 +27,6 @@ namespace HurisExample.Models
         [DataMember]
         public int? ProviderId { get; set; }
         // Navigation property
-        [DataMember]
         public virtual Provider Provider { get; set; }
         [DataMember]
         public string AdmitingName { get; set; }

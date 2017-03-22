@@ -21,10 +21,8 @@ namespace HurisExample
             //config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);
             //config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings
-    .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Serialize;
-            GlobalConfiguration.Configuration.Formatters
-                .Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter); 
+            //GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Serialize;
+            //GlobalConfiguration.Configuration.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
 
             // Web API routes
             config.MapHttpAttributeRoutes();

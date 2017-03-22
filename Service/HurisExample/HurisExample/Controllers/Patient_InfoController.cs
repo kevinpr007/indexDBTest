@@ -18,9 +18,23 @@ namespace HurisExample.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/Patient_Info
-        public IQueryable<Patient_Info> GetPatient_Info()
+        public IHttpActionResult GetPatient_Info()
         {
-            return db.Patient_Infos;
+            return Ok(db.Patient_Infos);
+        }
+
+        [Route("api/Patient_Info/Patient_Info_DTO")]
+        public IHttpActionResult GetPatient_Info_DTO()
+        {
+            var a = db.Patient_Infos;
+            List<Patient_Info_DTO> b = new List<Patient_Info_DTO>();
+
+            a.ToList().ForEach(x =>
+            {
+                b.Add(new Patient_Info_DTO { Id = x.Id, MemberName = x.MemberName, Provider = x.Provider, ProviderId = x.ProviderId });
+            });
+
+            return Ok(b);
         }
 
         // GET: api/Patient_Info/5
