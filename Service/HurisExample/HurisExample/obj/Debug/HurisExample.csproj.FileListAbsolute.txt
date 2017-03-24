@@ -130,3 +130,6 @@ C:\Users\kr5291\Desktop\HURIS\Service\HurisExample\HurisExample\obj\Debug\HurisE
 C:\Users\kr5291\Desktop\HURIS\Service\HurisExample\HurisExample\obj\Debug\HurisExample.pdb
 C:\Users\kr5291\Desktop\HURIS\Service\HurisExample\HurisExample\obj\Debug\HurisExample.Migrations.AddStagingTable.resources
 C:\Users\kr5291\Desktop\HURIS\Service\HurisExample\HurisExample\obj\Debug\HurisExample.csprojResolveAssemblyReference.cache
+C:\Users\kr5291\Desktop\HURIS\Service\HurisExample\HurisExample\bin\System.Web.Cors.dll
+C:\Users\kr5291\Desktop\HURIS\Service\HurisExample\HurisExample\bin\System.Web.Http.Cors.dll
+C:\Users\kr5291\Desktop\HURIS\Service\HurisExample\HurisExample\bin\System.Web.Http.Cors.xml
