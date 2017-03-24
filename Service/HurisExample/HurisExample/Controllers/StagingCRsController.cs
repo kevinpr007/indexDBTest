@@ -15,6 +15,7 @@ using Newtonsoft.Json;
 
 namespace HurisExample.Controllers
 {
+    [RoutePrefix("api/StagingCRs")]
     public class StagingCRsController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -89,7 +90,7 @@ namespace HurisExample.Controllers
         }
 
         // POST: api/StagingCRs/StagingCR_DTO
-        [Route("api/StagingCRs/StagingCR_DTO")]
+        [Route("StagingCR_DTO")]
         public async Task<IHttpActionResult> PostStagingCR_DTO(StagingDTO stagingDTO)
         {
 
@@ -119,6 +120,13 @@ namespace HurisExample.Controllers
             await db.SaveChangesAsync();
 
             return Ok(stagingCR);
+        }
+
+        [ResponseType(typeof(void))]
+        [Route("StagingCRSync")]
+        public IHttpActionResult GetStagingCRSync()
+        {
+            return Ok("success");// StatusCode(HttpStatusCode.NoContent);
         }
 
         protected override void Dispose(bool disposing)
