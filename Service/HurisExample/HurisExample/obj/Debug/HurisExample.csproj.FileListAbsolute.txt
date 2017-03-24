@@ -128,3 +128,5 @@ C:\Users\kr5291\Desktop\HURIS\Service\HurisExample\HurisExample\obj\Debug\HurisE
 C:\Users\kr5291\Desktop\HURIS\Service\HurisExample\HurisExample\obj\Debug\HurisExample.csproj.GenerateResource.Cache
 C:\Users\kr5291\Desktop\HURIS\Service\HurisExample\HurisExample\obj\Debug\HurisExample.dll
 C:\Users\kr5291\Desktop\HURIS\Service\HurisExample\HurisExample\obj\Debug\HurisExample.pdb
+C:\Users\kr5291\Desktop\HURIS\Service\HurisExample\HurisExample\obj\Debug\HurisExample.Migrations.AddStagingTable.resources
+C:\Users\kr5291\Desktop\HURIS\Service\HurisExample\HurisExample\obj\Debug\HurisExample.csprojResolveAssemblyReference.cache

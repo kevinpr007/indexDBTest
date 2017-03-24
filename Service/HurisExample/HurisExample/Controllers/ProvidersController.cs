@@ -68,8 +68,8 @@ namespace HurisExample.Controllers
                 }
             }
 
-            return Ok(provider);
-            //return StatusCode(HttpStatusCode.NoContent);
+            //return Ok(provider);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/Providers
