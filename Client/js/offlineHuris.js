@@ -16,7 +16,7 @@
     })
   })
 
-  function renderTable (data) {
+  let renderTable = (data) => {
     $('#MainTable').DataTable({
       retrieve: true,
       data: data,
@@ -29,34 +29,45 @@
         { 'title': 'Admission Type' },
         { 'title': 'Admiting Last Names' },
         { 'title': 'Admiting Name' },
-        { 'title': 'Provider' }
+        { 'title': 'Provider' },
+        { 'title': 'Sync' }
       ]
+    })
+
+    $.each($('#MainTable a'), function (index, item) {
+      $(this).on('click', function () {
+        let id = $(this).data('id')
+        indexDb.read(db, DB_Table, id, syncCall)
+      })
     })
   }
 
-  $('#syncAll').on('click', function () {
-    indexDb.read(db, DB_Table, 'c7709984-e900-494e-3b66-622773b1ca09', function (data) {
-      console.log(JSON.stringify(data))
-      $.ajax({
-        type: 'POST',
-        url: 'http://localhost:33052/api/StagingCRs/StagingCR_DTO',
-        data: JSON.stringify(data),
-        contentType: 'application/json',
-        dataType: 'json',
-        success: successCallback,
-        error: errorCallback
-      })
-
-      function successCallback (data) {
-        alert('success: ' + JSON.stringify(data))
-      }
-
-      function errorCallback (xhr, textStatus, errorThrown) {
-        console.log('error' + errorThrown)
-      }
+  let syncCall = (data) => {
+    console.log(JSON.stringify(data))
+    $.ajax({
+      type: 'POST',
+      url: 'http://localhost:33052/api/StagingCRs/StagingCR_DTO',
+      data: JSON.stringify(data),
+      contentType: 'application/json',
+      dataType: 'json',
+      success: successCallback,
+      error: errorCallback
     })
 
-    // TODO: Add this feature
+    function successCallback (data) {
+      alert('success: ' + JSON.stringify(data))
+    }
+
+    function errorCallback (xhr, textStatus, errorThrown) {
+      console.log('error' + errorThrown)
+    }
+  }
+
+  $('#syncAll').on('click', function () {
+    $.each($('#MainTable a'), function (index, item) {
+      let id = $(this).data('id')
+      indexDb.read(db, DB_Table, id, syncCall)
+    })
     alert('Your local data was uploaded to the server.')
   })
 }())

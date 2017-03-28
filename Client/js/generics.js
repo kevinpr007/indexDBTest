@@ -44,6 +44,7 @@
       newArrayObj.push(element.providerInfo.admitingLastNames)
       newArrayObj.push(element.providerInfo.admitingName)
       newArrayObj.push(element.providerInfo.providerId)
+      newArrayObj.push("<a class='btn btn-primary' data-id='" + element.id + "'>" + 'Sync</a>')
 
       newData.push(newArrayObj)
     })
