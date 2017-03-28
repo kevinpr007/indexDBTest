@@ -224,9 +224,18 @@
     <Compile Include="Migrations\201703231832003_Add Staging Table.Designer.cs">
       <DependentUpon>201703231832003_Add Staging Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703271818252_Add new fields and Error Table.cs" />
+    <Compile Include="Migrations\201703271818252_Add new fields and Error Table.Designer.cs">
+      <DependentUpon>201703271818252_Add new fields and Error Table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703272045542_Add Staging ID to the Error Table.cs" />
+    <Compile Include="Migrations\201703272045542_Add Staging ID to the Error Table.Designer.cs">
+      <DependentUpon>201703272045542_Add Staging ID to the Error Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Error.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Patient_Info.cs" />
     <Compile Include="Models\Patient_InfoDTO2.cs" />
@@ -238,6 +247,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
+    <Compile Include="Service\Factories.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -315,6 +325,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703231832003_Add Staging Table.resx">
       <DependentUpon>201703231832003_Add Staging Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703271818252_Add new fields and Error Table.resx">
+      <DependentUpon>201703271818252_Add new fields and Error Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703272045542_Add Staging ID to the Error Table.resx">
+      <DependentUpon>201703272045542_Add Staging ID to the Error Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

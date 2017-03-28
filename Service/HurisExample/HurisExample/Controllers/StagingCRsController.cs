@@ -12,6 +12,7 @@ using System.Web.Http.Description;
 using HurisExample.Models;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using HurisExample.Service;
 
 namespace HurisExample.Controllers
 {
@@ -98,7 +99,7 @@ namespace HurisExample.Controllers
 
             StagingCR cr = new StagingCR { CR_Info = jsonData };
 
-            db.StagingCRs.Add(cr); 
+            db.StagingCRs.Add(cr);
             await db.SaveChangesAsync();
 
             StagingDTO objDes = JsonConvert.DeserializeObject<StagingDTO>(cr.CR_Info);
@@ -126,7 +127,51 @@ namespace HurisExample.Controllers
         [Route("StagingCRSync")]
         public IHttpActionResult GetStagingCRSync()
         {
-            return Ok("success");// StatusCode(HttpStatusCode.NoContent);
+
+            List<StagingCR> allRecords = db.StagingCRs.Where(x => x.isSync ==  false).ToList();
+            bool containErrors = false;
+
+            foreach (StagingCR cr in allRecords)
+            {
+
+                try
+                {
+                    StagingDTO objDes = JsonConvert.DeserializeObject<StagingDTO>(cr.CR_Info);
+                    Patient_Info newCR = Factories.SyncPatient_Info(objDes);
+
+                    db.Patient_Infos.Add(newCR);
+                    db.SaveChanges();
+
+                    cr.isSync = true;
+                    cr.containError = false;
+                    db.Entry(cr).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                }
+
+                catch (Exception e)
+                {
+                    if (containErrors == false) containErrors = true;
+
+                    db.Errors.Add(new Models.Error() { error = e.Message, stagingCR_Id = cr.Id });
+                    db.SaveChanges();
+
+                    cr.isSync = false;
+                    cr.containError = true;
+                    db.Entry(cr).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                }
+            }
+
+            if (containErrors == false)
+            {
+                return Ok("Sync Completed");
+            }
+
+            //return InternalServerError();
+            return InternalServerError(new Exception("Error in Sync Process where founds."));
+
         }
 
         protected override void Dispose(bool disposing)

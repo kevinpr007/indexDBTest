@@ -35,5 +35,7 @@ namespace HurisExample.Models
         public System.Data.Entity.DbSet<HurisExample.Models.Patient_Info> Patient_Infos { get; set; }
 
         public System.Data.Entity.DbSet<HurisExample.Models.StagingCR> StagingCRs { get; set; }
+
+        public System.Data.Entity.DbSet<HurisExample.Models.Error> Errors { get; set; }
     }
 }
