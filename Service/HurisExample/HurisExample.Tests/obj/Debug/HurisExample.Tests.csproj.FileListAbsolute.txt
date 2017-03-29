@@ -1,0 +1,1 @@
+c:\users\kr5291\documents\visual studio 2013\Projects\HurisExample\HurisExample.Tests\obj\Debug\HurisExample.Tests.csprojResolveAssemblyReference.cache
