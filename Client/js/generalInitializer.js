@@ -11,6 +11,6 @@ $(document).ready(function () {
     todayHighlight: true,
     autoclose: true
   }
-  
+
   date_input.datepicker(options)
 })

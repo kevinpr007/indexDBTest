@@ -18,6 +18,7 @@
 
     function errorCallback (xhr, textStatus, errorThrown) {
       console.log('error' + errorThrown)
+      alert('error' + errorThrown)
     }
 
     // utils.myAjaxCallExample('GET', 'https://jsonplaceholder.typicode.com/posts/1', {}, successCallback, errorCallback)

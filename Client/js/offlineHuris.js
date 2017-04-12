@@ -37,12 +37,25 @@
     $.each($('#MainTable a'), function (index, item) {
       $(this).on('click', function () {
         let id = $(this).data('id')
-        indexDb.read(db, DB_Table, id, syncCall)
+        indexDb.read(db, DB_Table, id, function (data) {
+          syncCall(data, successCallback, errorCallback)
+        })
       })
     })
   }
 
-  let syncCall = (data) => {
+  function successCallback (data) {
+    alert('success: ' + JSON.stringify(data))
+    indexDb.delete(db, DB_Table, data.id)
+    location.reload()
+  }
+
+  function errorCallback (xhr, textStatus, errorThrown) {
+    console.log('error' + textStatus)
+    alert('Error: ' + xhr.statusText + '. Status Code: ' + xhr.status)
+  }
+
+  let syncCall = (data, successCallback, errorCallback) => {
     console.log(JSON.stringify(data))
     $.ajax({
       type: 'POST',
@@ -53,21 +66,19 @@
       success: successCallback,
       error: errorCallback
     })
-
-    function successCallback (data) {
-      alert('success: ' + JSON.stringify(data))
-    }
-
-    function errorCallback (xhr, textStatus, errorThrown) {
-      console.log('error' + errorThrown)
-    }
   }
 
   $('#syncAll').on('click', function () {
     $.each($('#MainTable a'), function (index, item) {
       let id = $(this).data('id')
-      indexDb.read(db, DB_Table, id, syncCall)
+      indexDb.read(db, DB_Table, id, function (data) {
+        syncCall(data, function (data) {
+          indexDb.delete(db, DB_Table, data.id)
+        // TODO: Delete Rows
+        }, errorCallback)
+      })
     })
+    // TODO: Delete Rows
     alert('Your local data was uploaded to the server.')
   })
 }())
